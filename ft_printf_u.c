@@ -6,28 +6,29 @@
 /*   By: aapresya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 09:37:43 by aapresya          #+#    #+#             */
-/*   Updated: 2021/05/23 09:37:45 by aapresya         ###   ########.fr       */
+/*   Updated: 2021/05/24 22:10:44 by aapresya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putnbrUnsigned_fd(unsigned int n, int fd)
+void	ft_putnbrunsigned_fd(unsigned int n, int fd)
 {
 	char a;
+
 	if (n > 9)
 	{
-		ft_putnbrUnsigned_fd(n / 10, fd);
-		ft_putnbrUnsigned_fd(n % 10, fd);
+		ft_putnbrunsigned_fd(n / 10, fd);
+		ft_putnbrunsigned_fd(n % 10, fd);
 	}
 	else
 	{
 		a = n + '0';
-		ft_putchar_fd(a, 1); //write(fd, &a, 1); 
+		ft_putchar_fd(a, 1);
 	}
 }
 
-int ft_unsignedLength(unsigned int num)
+int		ft_unsignedlength(unsigned int num)
 {
 	int i;
 
@@ -39,18 +40,17 @@ int ft_unsignedLength(unsigned int num)
 		else
 			i = 1;
 	}
-		
 	while (num != 0)
 	{
 		num /= 10;
 		i++;
 	}
-	if (t_flags.period && t_flags.precision == 0 && !t_flags.minWidth)
+	if (t_flags.period && t_flags.precision == 0 && !t_flags.minwidth)
 		i = 0;
 	return (i);
 }
 
-void ft_helper_unsigned(int spaces, int zeroes, unsigned int num)
+void	ft_helper_unsigned(int spaces, int zeroes, unsigned int num)
 {
 	if (!t_flags.minus)
 	{
@@ -59,27 +59,28 @@ void ft_helper_unsigned(int spaces, int zeroes, unsigned int num)
 		while (zeroes-- > 0)
 			ft_putchar_fd('0', 1);
 		if (!(num == 0 && t_flags.precision == 0 && t_flags.period))
-			ft_putnbrUnsigned_fd(num, 1);
+			ft_putnbrunsigned_fd(num, 1);
 	}
 	else
 	{
 		while (zeroes-- > 0)
 			ft_putchar_fd('0', 1);
 		if (!(num == 0 && t_flags.precision == 0 && t_flags.period))
-			ft_putnbrUnsigned_fd(num, 1);
+			ft_putnbrunsigned_fd(num, 1);
 		while (spaces-- > 0)
 			ft_putchar_fd(' ', 1);
-	}	
+	}
 }
 
-void ft_printf_unsignedInt(){
-	int spaces;
-	int zeroes;
-	unsigned int num;
-	
-	spaces = calculateSpaces(ft_unsignedLength((unsigned int)t_flags.arg));
-	zeroes = calculateZeroes(ft_unsignedLength((unsigned int)t_flags.arg));
-	if(t_flags.zero && t_flags.precision == 0 && !t_flags.period)
+void	ft_printf_unsignedint(void)
+{
+	int				spaces;
+	int				zeroes;
+	unsigned int	num;
+
+	spaces = calculatespaces(ft_unsignedlength((unsigned int)t_flags.arg));
+	zeroes = calculatezeroes(ft_unsignedlength((unsigned int)t_flags.arg));
+	if (t_flags.zero && t_flags.precision == 0 && !t_flags.period)
 	{
 		zeroes += spaces;
 		spaces = 0;

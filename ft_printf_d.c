@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int ft_numlength(int num)
+int		ft_numlength(int num)
 {
 	int i;
 
@@ -29,12 +29,12 @@ int ft_numlength(int num)
 		num /= 10;
 		i++;
 	}
-	if (t_flags.period && t_flags.precision == 0 && !t_flags.minWidth)
+	if (t_flags.period && t_flags.precision == 0 && !t_flags.minwidth)
 		i = 0;
 	return (i);
 }
 
-void ft_helper_digit(int spaces, int zeroes, int num)
+void	ft_helper_digit(int spaces, int zeroes, int num)
 {
 	if (!t_flags.minus)
 	{
@@ -57,18 +57,19 @@ void ft_helper_digit(int spaces, int zeroes, int num)
 			ft_putnbr_fd(num, 1);
 		while (spaces-- > 0)
 			ft_putchar_fd(' ', 1);
-	}	
+	}
 }
 
-void ft_printf_int()
+void	ft_printf_int(void)
 {
 	int spaces;
 	int zeroes;
 	int num;
 
-	spaces = calculateSpaces(ft_numlength((int)t_flags.arg));
-	zeroes = calculateZeroes(ft_numlength((int)t_flags.arg));
-	if(t_flags.zero && t_flags.precision == 0 && !t_flags.period){
+	spaces = calculatespaces(ft_numlength((int)t_flags.arg));
+	zeroes = calculatezeroes(ft_numlength((int)t_flags.arg));
+	if (t_flags.zero && t_flags.precision == 0 && !t_flags.period)
+	{
 		zeroes += spaces;
 		spaces = 0;
 	}
@@ -82,5 +83,3 @@ void ft_printf_int()
 	}
 	ft_helper_digit(spaces, zeroes, num);
 }
-
-

@@ -12,16 +12,17 @@
 
 #include "ft_printf.h"
 
-void ft_printf_char(){
+void	ft_printf_char(void)
+{
 	if (t_flags.minus)
 	{
 		ft_putchar_fd((char)t_flags.arg, 1);
-		while (t_flags.minWidth-- > 1)
+		while (t_flags.minwidth-- > 1)
 			ft_putchar_fd(' ', 1);
 	}
 	else
 	{
-		while (t_flags.minWidth-- > 1)
+		while (t_flags.minwidth-- > 1)
 			ft_putchar_fd(' ', 1);
 		ft_putchar_fd((char)t_flags.arg, 1);
 	}

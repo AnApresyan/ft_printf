@@ -12,18 +12,27 @@
 
 #include "ft_printf.h"
 
-int calculateSpaces(int len)
+void	updatestruct(void)
 {
-	if (t_flags.precision > len)
-		return t_flags.minWidth - t_flags.precision;
-	else 
-		return t_flags.minWidth - len;	
+	t_flags.minus = 0;
+	t_flags.zero = 0;
+	t_flags.minwidth = 0;
+	t_flags.period = 0;
+	t_flags.precision = 0;
 }
 
-int calculateZeroes(int len)
+int		calculatespaces(int len)
+{
+	if (t_flags.precision > len)
+		return (t_flags.minwidth - t_flags.precision);
+	else
+		return (t_flags.minwidth - len);
+}
+
+int		calculatezeroes(int len)
 {
 	if (t_flags.precision)
-		return t_flags.precision - len;
+		return (t_flags.precision - len);
 	else
-		return 0;
+		return (0);
 }
