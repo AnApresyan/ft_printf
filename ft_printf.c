@@ -83,10 +83,12 @@ void ft_check_type(char **format){
 		ft_printf_char();
 	// else if (*(*format) == 's')
 	// 	ft_printf_string();
-	// else if (*format == 'p')
-	// 	ft_printf_pointer();
+	else if (*(*format) == 'p')
+		ft_printf_pointer();
 	else if (*(*format) == 'd' || *(*format) == 'i')
 		ft_printf_int();
+	else if (*(*format) == '%')
+		ft_print_percent();
 	else if (*(*format) == 'u')
 		ft_printf_unsignedInt();
 	else if (*(*format) == 'x')
@@ -178,8 +180,12 @@ void updateStruct(){
 // 	// // printf("-----hhhhhhhhhhhhhhhh");
 // 	// ft_printf("%-*.0d*0", 21, -1011);
 // 	//printf("%1.d", 0);
-// 	printf("%0*d\n", -7, -54);
-// 	ft_printf("%0*d|\n", -7, -54);
+// 	// int j = 68;
+
+// 	// printf("%p", &j);
+// 	// //printf("--------------------");
+// 	ft_printf(" %10p %10p \n", 1, -1);
+// 	printf(" %10p %10p ", 1, -1);
 // 	// TEST(16, print(" --0*%0*.0d*0 0*%0*.10d*0-- ", -2, 0, 21, 1));
 // 	// TEST(17, print(" --0*%0*.0d*0 0*%0*.10d*0-- ", -21, INT_MAX, 21, INT_MIN));
 // 	// TEST(18, print(" --0*%0*.0d*0 0*%0*.10d*0-- ", -21, LONG_MAX, 21, LONG_MIN));

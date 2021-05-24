@@ -98,7 +98,6 @@ void ft_printf_hexa(char letter){
 		zeroes += spaces;
 		spaces = 0;
 	}
-	//if (decimal >= 0)
 	ft_helper_x(spaces, zeroes, decimal, letter);
 }
 
